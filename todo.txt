@@ -1,0 +1,32 @@
+/*-----------------------------------------
+*1.Add a method that checks
+*  for synonyms to words. This
+   class should be able to isolate
+   the best/closest synonym to such
+   words depending on the context in
+   which it is used
+2. Using this synonyms from the method
+   above, another class will be created
+   for generating sentences similar/connotes
+   almost the same meaning as the one used for
+   instantiating the class but using different words
+3. Another method for generating completely opposite
+   meaning to a sentence will be provided using a method
+   that gets the opposite (Antonyms) to a word
+#####-------SUMMARY OF THIS TODO LIST-------#####
+	Four more methods shall be added.
+    Possible names include
+    	1. check_syn(<parameters not yet none>)
+    		checks for the synonyms to words
+    	2. check_ant(<parameters not yet none>)
+    		checks for the antonyms to words
+    	3. generate_same(<parameters not yet none>)
+    		generates sentences with the same semantical
+    		meaning but different syntactical connotation
+    	4. generate_opposite(<parameters not yet none>)
+    		generates the exact opposite meaning to a sentence
+#####-------WE CAN DO THIS TOGETHER-------#####
+>>>>> FORK ME ON GITHUB: 
+>>>>> FOLLOW ME ON TWITTER: #Samuel.Adeshina6
+>>>>> LIKE ME ON FACEBOOK:
+>>>>> SEND ME AN EMAIL: samueladeshina73@gmail.com
