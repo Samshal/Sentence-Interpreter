@@ -34,7 +34,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package   sentece-interpreter
+ * @package   sentence-interpreter
  * @author    Samuel Adeshina <samueladeshina73@gmail.com>
  * @copyright 2015 Samuel Adeshina <samueladeshina73@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
@@ -114,8 +114,6 @@
 			$words = self::word_array();
 			foreach ($words as $word)
 			{
-						
-				$i;
 				for ($i = 0; $i < strlen($word); $i++)
 				{
 					/*---------------
@@ -123,12 +121,23 @@
 					 *characters: .,!?;:()[]{}
 					 *from the word
 					---------------*/
-					 if (strstr('.,!?;:()[]{}',$word[$i]))
+					 if (strstr('.,!?;:()[]{}""\'\'',$word[$i]))
 					 {
-					 	$word[$i] = "";
+					 	if ($i == 0) //if any of these punctuations appear at the beginning of the word
+					 	{
+					 		$word = substr($word, $i+1);
+					 	}
+					 	else if ($i == strlen($word)-1) //if any punctuation appears at the end of the word
+					 	{
+					 		$word = substr($word, 0, strlen($word)-1);
+					 	}
+					 	else // it punctuations occur anywhere between a word
+					 	{
+					 		$word[$i] = '';
+					 	}
 					 }
 				}
-					
+
 				if ($bool == true)	
 				{
 					//Convert the first letter of the word to capital
@@ -207,7 +216,7 @@
 		}
 		/*---------------------
 		 *instantiation of the validity() method.
-		 *It accepts the local address as a paramter
+		 *It accepts the local address as a parameter
 		 *The local address is an address of the Dictionary Folder
 		 *The Dictionary Folder bundled with this class is the dict_folder Folder
 		 *but you can have your dictionary files anywhere, hence you must set
@@ -242,6 +251,10 @@
 		---------------------*/
 		function verify_word($word_to_verify, $dic_folder)
 		{
+			if (!is_dir($dic_folder))
+			{
+				$dic_folder = "dict_files";
+			}
 			$d = opendir($dic_folder) or die($php_errormsg);
 			$validity_count = 0;
 			while (false !== ($f = readdir($d)))
