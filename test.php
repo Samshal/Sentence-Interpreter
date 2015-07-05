@@ -15,6 +15,7 @@ require_once("index.php");
  $isValidWord = $sentence->use_method("validity", "dict_files");
  $partOfSpeech = $sentence->use_method("find pos", 0);
  $distinctWords = $sentence->use_method("group_words", true);
+ $ngram = $sentence->getNgram('Digestion', 3); //Added: 7/5/2015. A method for getting the n-gram component of a word
  echo "<center><h1>EXAMPLES (Sentence-Interpreter)</h1></center><br/>SUPPLIED SENTENCE: <h2>".$sentence_to_use."</h2><br/>";
  echo <<<_END
  	<table border="1">
@@ -24,6 +25,7 @@ require_once("index.php");
  			<th>Array of Distinct Words In Sentence</th>
  			<th>Array of Words + their Validity</th>
  			<th>Array of words + their part of speech</th>
+ 			<th>N-gram Components of the word: Digestion</th>
  		</tr>
  		<tr>
  			<th>$numberOfWords</th>
@@ -36,5 +38,7 @@ _END;
 			print_r($isValidWord);
 			echo "</th><th>";
 			print_r($partOfSpeech);
+			echo "</th><th>";
+			print_r($ngram);
 			echo "</th></tr></table>";
 ?>

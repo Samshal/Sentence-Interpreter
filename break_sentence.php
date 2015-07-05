@@ -39,6 +39,7 @@
  * @copyright 2015 Samuel Adeshina <samueladeshina73@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @since     File available since Release 1.0.0
+ * @updated   7/5/2015. Added The getNgram() method for splitting a word into its n-gram components
  *//*
 --------------Please consult the todo file for a list of feature(s) to be added---------
 */
@@ -323,6 +324,38 @@
 				}
 			}
 			return $arrWords_pos;
+		}
+
+
+		/*---------------------
+		 *instantiation of the getNgram() method.
+		 *It accepts two parameters:
+		 *The first parameter is the word to split into n-grams
+		 *and the second parameter is the value of n.
+		 *For instance to split the word 'Caterpillar' into a tri-gram (3-gram),
+		 *You instantiate the method this way: 
+		 *             $arrayofreturnedngrams = $classaname->getNgram('Caterpillar', 3);
+		 * It returns an array.
+		---------------------*/
+		public function getNgram($word, $n)
+		{
+			$len = strlen($word);
+			for ($i = 0; $i < $len - 1; $i++)
+			{
+				$string = '';
+				for ($j = 0; $j < $n; $j++)
+				{
+					if (isset($word[$i + $j]))
+					{
+						$string .= $word[$i + $j];
+					}
+				}
+				if (strlen($string) == $n)
+				{
+					$ngram[] = $string;
+				}
+			}
+			return $ngram;
 		}
 	}
 //Please consult the todo file for a list of feature(s) to be added
